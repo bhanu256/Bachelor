@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Bachelor</string>
+    <string name="app_name">Batchelor</string>
+    <string name="title_activity_main_maps">Map</string>
 </resources>
