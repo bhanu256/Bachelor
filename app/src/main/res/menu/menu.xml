@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
 
+        <item
+            android:title="Create rest house"
+            android:id="@+id/Rhouse"/>
+
+        <item
+            android:title="Create part time Job"
+            android:id="@+id/PTJob"/>
+
+        <item
+            android:title="Create full time Job"
+            android:id="@+id/FTJob"/>
+
+    </group>
 </menu>

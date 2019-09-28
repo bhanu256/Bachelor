@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Batchelor</string>
     <string name="title_activity_main_maps">Map</string>
+    <string name="title_activity_set_location">Map</string>
+
+    <string-array name="drop">
+        <item>Full Time</item>
+        <item>part Time</item>
+    </string-array>
 </resources>
