@@ -7,12 +7,12 @@
             android:id="@+id/Rhouse"/>
 
         <item
-            android:title="Create part time Job"
-            android:id="@+id/PTJob"/>
+            android:title="Create full time Job"
+            android:id="@+id/Job"/>
 
         <item
-            android:title="Create full time Job"
-            android:id="@+id/FTJob"/>
+            android:title="Register Hostel"
+            android:id="@+id/Hostel"/>
 
     </group>
 </menu>

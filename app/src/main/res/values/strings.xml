@@ -4,7 +4,13 @@
     <string name="title_activity_set_location">Map</string>
 
     <string-array name="drop">
+        <item>Select</item>
         <item>Full Time</item>
         <item>part Time</item>
+    </string-array>
+
+    <string-array name="toolspin">
+        <item>Batchelor</item>
+        <item>Tourist</item>
     </string-array>
 </resources>

@@ -1,8 +1,12 @@
 package com.hackathon.bachelor;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,18 +24,33 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class SetLocation extends FragmentActivity implements OnMapReadyCallback {
+import java.util.HashMap;
+import java.util.Map;
+
+public class SetLocation extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient locationProviderClient;
     public LatLng mylatlong;
     public LocationRequest locationRequest;
+    public Toolbar toolbar;
+
+    SharedPreferences sharedPreferences;
+
+    DatabaseReference databaseReference,locationrefer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_location);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        sharedPreferences = getSharedPreferences("my", Context.MODE_PRIVATE);
 
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -44,6 +63,7 @@ public class SetLocation extends FragmentActivity implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
 
@@ -85,7 +105,71 @@ public class SetLocation extends FragmentActivity implements OnMapReadyCallback 
         LatLng lt = mMap.getCameraPosition().target;
         Log.d("Loc",lt.toString());
 
-        Intent intent = new Intent(this,Tick.class);
-        startActivity(intent);
+        Intent intent = getIntent();
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("houseInt",1);
+        editor.putInt("job",1);
+        editor.putInt("hostel",1);
+        editor.commit();
+        //DatabaseReference locationrefer;
+        String type = intent.getStringExtra("Where");
+        if(type=="RentHouses" || type.equals("RentHouses")) {
+            Log.d("TAG",intent.getStringExtra("Where"));
+            String mail = sharedPreferences.getString("id",null);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("RentHouses").child(mail);
+            locationrefer = FirebaseDatabase.getInstance().getReference().child("RentHouses").child(mail).child("location");
+            Map<String,Object> data = new HashMap<String,Object>();
+            Map<String,Object> loc = new HashMap<String,Object>();
+            data.put("rest",intent.getStringExtra("rest"));
+            data.put("advance",intent.getStringExtra("advance"));
+            data.put("Sno",(sharedPreferences.getInt("houseInt",1)+1));
+            Log.d("TAG",data.toString());
+            databaseReference.updateChildren(data);
+            //data.clear();
+            loc.put("latitude",lt.latitude);
+            loc.put("longitude",lt.longitude);
+            locationrefer.updateChildren(loc);
+        }
+
+        if(type=="FullJobs" || type.equals("FullJobs")) {
+            Log.d("TAG",intent.getStringExtra("Where"));
+            String mail = sharedPreferences.getString("id",null);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("FullJobs").child(mail);
+            locationrefer = FirebaseDatabase.getInstance().getReference().child("FullJobs").child(mail).child("location");
+            Map<String,Object> data = new HashMap<String,Object>();
+            Map<String,Object> loc = new HashMap<String,Object>();
+            data.put("salary",intent.getStringExtra("salary"));
+            data.put("desc",intent.getStringExtra("desc"));
+            data.put("req",intent.getStringExtra("req"));
+            data.put("Sno",(sharedPreferences.getInt("job",1)+1));
+            Log.d("TAG",data.toString());
+            databaseReference.updateChildren(data);
+            //data.clear();
+            loc.put("latitude",lt.latitude);
+            loc.put("longitude",lt.longitude);
+            locationrefer.updateChildren(loc);
+        }
+
+        if(type=="Hostel" || type.equals("Hostel")) {
+            Log.d("TAG",intent.getStringExtra("Where"));
+            String mail = sharedPreferences.getString("id",null);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Hostel").child(mail);
+            locationrefer = FirebaseDatabase.getInstance().getReference().child("Hostel").child(mail).child("location");
+            Map<String,Object> data = new HashMap<String,Object>();
+            Map<String,Object> loc = new HashMap<String,Object>();
+            data.put("rentPD",intent.getStringExtra("rentPD"));
+            data.put("max",intent.getStringExtra("max"));
+            data.put("Sno",(sharedPreferences.getInt("hostel",1)+1));
+            Log.d("TAG",data.toString());
+            databaseReference.updateChildren(data);
+            //data.clear();
+            loc.put("latitude",lt.latitude);
+            loc.put("longitude",lt.longitude);
+            locationrefer.updateChildren(loc);
+        }
+
+        Intent intent1 = new Intent(this,Tick.class);
+        startActivity(intent1);
     }
 }

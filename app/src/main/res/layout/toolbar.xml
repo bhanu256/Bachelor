@@ -6,4 +6,6 @@
     android:id="@+id/toolbar"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     android:background ="?attr/colorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+</androidx.appcompat.widget.Toolbar>

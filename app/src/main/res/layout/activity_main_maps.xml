@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <include
-           layout="@layout/toolbar"/>
+           layout="@layout/mainspintool"/>
 
         <fragment
             android:id="@+id/map"

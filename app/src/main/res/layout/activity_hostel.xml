@@ -20,53 +20,53 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/ramt"
-                android:layout_width="150dp"
+                android:id="@+id/rpd"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:hint="Rent amount per month"
+                android:hint="Rent per day"
                 android:inputType="text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.259" />
+                app:layout_constraintVertical_bias="0.252" />
 
             <EditText
-                android:id="@+id/adv"
-                android:layout_width="150dp"
+                android:id="@+id/max"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:hint="Advance"
+                android:hint="Maximum member"
                 android:inputType="text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.44" />
+                app:layout_constraintVertical_bias="0.377" />
 
             <Button
-                android:layout_width="75dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:onClick="photoGet"
                 android:text="Get photo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.315"
+                app:layout_constraintHorizontal_bias="0.202"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.576" />
+                app:layout_constraintVertical_bias="0.551" />
 
             <Button
-                android:layout_width="75dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:onClick="upload"
                 android:text="Upload"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.744"
+                app:layout_constraintHorizontal_bias="0.774"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.576" />
+                app:layout_constraintVertical_bias="0.55" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

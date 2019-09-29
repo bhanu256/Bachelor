@@ -7,10 +7,10 @@
     tools:context=".Tick">
 
     <Button
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_width="50dp"
         android:onClick="next"
-        android:text="next"
+        android:text="Completed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
