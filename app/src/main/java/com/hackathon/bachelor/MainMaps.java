@@ -6,7 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,6 +68,7 @@ public class MainMaps extends AppCompatActivity implements OnMapReadyCallback {
 
     ArrayList<ArrayList<String>> markerlist;
 
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,8 @@ public class MainMaps extends AppCompatActivity implements OnMapReadyCallback {
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         markerlist = new ArrayList<ArrayList<String>>();
+
+        sharedPreferences = getSharedPreferences("my", Context.MODE_PRIVATE);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -125,6 +130,14 @@ public class MainMaps extends AppCompatActivity implements OnMapReadyCallback {
 
                     case R.id.Hostel:
                         intent = new Intent(MainMaps.this, Hostel.class);
+                        startActivity(intent);
+                        return true;
+
+                    case R.id.LOGOUT :
+                        sharedPreferences.edit().remove("mail").commit();
+                        sharedPreferences.edit().remove("pass").commit();
+                        sharedPreferences.edit().remove("id").commit();
+                        intent = new Intent(MainMaps.this,MainActivity.class);
                         startActivity(intent);
                         return true;
 
